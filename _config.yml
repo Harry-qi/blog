@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 陈明启的博客
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
-language: en
+author: 陈明启
+language: zh-CN
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: http://example.com
+url: http://blog.hjnb.design/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -98,7 +98,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: yun
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
