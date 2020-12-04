@@ -1,9 +1,8 @@
 ---
-title: puppeteer
+title: Puppeteer生成pdf
 date: 2020-12-04 11:10:49
 tags:
 ---
-# Puppeteer生成pdf
 > 最近公司业务需要打印pdf的功能，先说需求：
 > - 封面(就是第一页内容)在web端不用展示，打印的pdf需要展示封面。 
 > - 内容最多会有6页。  
