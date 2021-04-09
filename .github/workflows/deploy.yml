@@ -14,7 +14,7 @@ jobs:
       - name: biuld
         run: |
           npm install
-          npm run clear
+          npm run clean
           npm run build
           npm run deploy
           git config --global user.email "674816588@qq.com"
