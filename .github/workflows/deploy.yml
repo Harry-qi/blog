@@ -7,14 +7,13 @@ on:
 
 jobs:
   pipeline:
-   runs-on: ubuntu-18.04
-   steps:
+    runs-on: ubuntu-18.04
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@master
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build
-          BUILD_SCRIPT: npm install && npm run clear && npm run build && npm run deploy
+      - name: biuld
+        run: |
+          npm install && npm run clear && npm run build && npm run deploy &&
+          git add -f public/
+          git commit -m 'add to gh-page'
+          git subtree push --prefix public  origin gh-pages
