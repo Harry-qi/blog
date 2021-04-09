@@ -13,7 +13,12 @@ jobs:
         uses: actions/checkout@v2
       - name: biuld
         run: |
-          npm install && npm run clear && npm run build && npm run deploy &&
+          npm install
+          npm run clear
+          npm run build
+          npm run deploy
+          git config --global user.email "674816588@qq.com"
+          git config --global user.name "Harry-qi"
           git add -f public/
           git commit -m 'add to gh-page'
           git subtree push --prefix public  origin gh-pages
