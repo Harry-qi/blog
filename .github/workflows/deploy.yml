@@ -1,0 +1,20 @@
+name: deploy blog
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  pipeline:
+   runs-on: ubuntu-18.04
+   steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build and Deploy
+        uses: JamesIves/github-pages-deploy-action@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build
+          BUILD_SCRIPT: npm install && npm run clear && npm run build && npm run deploy
