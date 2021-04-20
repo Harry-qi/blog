@@ -11,9 +11,12 @@ tags: linux
 |   ps -ef | grep nginx |  查看进程nginx   |
 |  kill -9 123456       |  彻底杀死进程   |
 |  chmod +x /usr/local/src/jenkins/jenkins.sh   |  设置可执行权限  |
-|  cp -r    |    递归复制  |
+|  cp -r /home/packageA/* /home/cp/packageB/  |    递归复制 packageA 下的所有文件拷贝到 packageB  |
 |  rm -rf   |    递归强制删除  |
 |  cat      |    查看文件  |
 |  whereis  |    用于程序名的搜索  |
 |  :q!      |    不保存并且强制退出  |
 |  :wq      |    保存后离开 vi  |
+| scp output.txt root@192.168.1.0:/data/ |  本地拷贝文件到远程服务器 |
+| netstat -lnp|grep 88  |   检查端口被哪个进程占用 |
+| ssh-copy-id root@192.168.1.0 | 将本机的公钥复制到远程机器的authorized_keys文件中，这样输入一次密码后以后就不用输密码了  |
