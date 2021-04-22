@@ -18,5 +18,5 @@ tags: linux
 |  :q!      |    不保存并且强制退出  |
 |  :wq      |    保存后离开 vi  |
 | scp output.txt root@192.168.1.0:/data/ |  本地拷贝文件到远程服务器 |
-| netstat -lnp|grep 88  |   检查端口被哪个进程占用 |
+| netstat -lnp &#124; grep 88 |   检查端口被哪个进程占用 |
 | ssh-copy-id root@192.168.1.0 | 将本机的公钥复制到远程机器的authorized_keys文件中，这样输入一次密码后以后就不用输密码了  |
