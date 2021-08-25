@@ -203,6 +203,7 @@ module.exports = UserController;
 2. 参数校验使用来`egg-validate`，在`plugin.js`中注册了，就可以通过`this.ctx.validate`使用(插件会挂载到ctx上)，如果不满足校验规则，则会给出提示，如下
 ![错误提示](https://i.loli.net/2021/08/03/MC3SwBPNHuRxzFn.png)
 3. `findByPk`是`Sequelize`的方法，更多的api可以查看[文档](https://www.sequelize.com.cn/)
+4. 如果在`model`层中未定义字段，使用create或者find等其他方法的时候就不会插入或者查到该字段。**所以如果中途改数据库(例如增加字段，修改字段等操作)，一定要在`model`层及时修改**
 
 至此，一个简单的查询接口就完成了，效果如下图
 ![效果图](https://i.loli.net/2021/08/03/DBeo75jcgnzFh1E.png)
