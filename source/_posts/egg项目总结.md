@@ -69,7 +69,7 @@ module.exports = app => {
     //  const Model = app.model.define(...)
     Model.associate = function() {
         // 一个动态有多个评论
-        app.model.SfActivity.hasMany(app.model.SfComment, { foreignKey: 'id', targetKey: 'activity_id', as: 'commentList' });
+        app.model.SfActivity.hasMany(app.model.SfComment, { foreignKey: 'activity_id', targetKey: 'id', as: 'commentList' });
     };
 }
 ````
