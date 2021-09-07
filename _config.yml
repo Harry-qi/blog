@@ -105,15 +105,12 @@ theme: yun
 deploy:
   type: ''
 
-code:
-  copy_btn: true
-  highlight:
-    enable: true
-    line_number: true
-    lib: "highlightjs"
-    highlightjs:
-      style: 'Github Gist'
-      bg_color: false
-    prismjs:
-      style: "default"
-      preprocess: true
+# 关闭 highlight
+highlight:
+  enable: false
+# 启用 prism
+prismjs:
+  enable: true
+  preprocess: true
+  line_number: false
+  tab_replace: ""
