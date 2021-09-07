@@ -104,3 +104,16 @@ theme: yun
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+code:
+  copy_btn: true
+  highlight:
+    enable: true
+    line_number: true
+    lib: "highlightjs"
+    highlightjs:
+      style: 'Github Gist'
+      bg_color: false
+    prismjs:
+      style: "default"
+      preprocess: true
