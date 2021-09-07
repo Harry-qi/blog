@@ -6,21 +6,21 @@ tags: egg
 > 最近用egg做了一个完整的后端项目，借此总结下项目中用到的重要知识点
 # 1. 跨域问题
 之前一直使用`egg-cors`，配置如下，这也是[文档](https://www.npmjs.com/package/egg-cors#configuration)中默认配置
-```javascript
+``` javascript
 // config.default.js
 config.cors = {
     origin: '*',
     // {string|Function} origin: '*',
     // {string|Array} allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
 };
-````
+```
 后面有个需求，在另外一个网站里调用本项目的接口，一直报跨域的错，错误如下
 ![报错](https://i.loli.net/2021/09/02/rCdG924tZJcTnuB.png)
 大致意思就是有`withcredentials`的时候不能设置`*`。
 看了下`egg-cors`文档没写withcredentials的相关配置，但是我注意到`egg-cors`是基于@koa/cors的，就看到@koa/cors的[文档](https://github.com/koajs/cors#corsoptions)
 修改配置如下
 
-```javascript
+``` javascript
 // config.default.js
 config.cors = {
     origin: 'https://www.xxx.com',
@@ -28,10 +28,10 @@ config.cors = {
     // Access-Control-Allow-Credentials
     credentials: true,
 };
-````
+```
 
 这样在xxx网站上调用接口是没有报错的，但是我这个项目还有其他网站调用的，所以我改下`origin`为
-```javascript
+``` javascript
 // config.default.js
 config.cors = {
     origin: 'https://www.xxx.com,'http://localhost:8080','https://www.bbb.cn'',
@@ -39,7 +39,7 @@ config.cors = {
     // Access-Control-Allow-Credentials
     credentials: true,
 };
-````
+```
 运行了下，直接报错了。查了相关资料`origin`是不能这样设置的。在`egg-cors`中设置多个`origin`需要如下设置
 ``` javascript
  config.security = {
@@ -58,10 +58,10 @@ config.cors = {
 ```
 至此，跨域问题已经解决。
 
-# 1. 联表查询
+# 2. 联表查询
 > 之前都是获取到数据，再循环数据再次查询数据库，这样做法确实不优雅，于是查询相关资料如何联表查询
 业务场景：动态中有多个评论，所以我要根据动态id查询该动态内容以及所有评论
-```javascript
+``` javascript
 // model/sf_activity.js
 'use strict';
 module.exports = app => {
@@ -72,9 +72,9 @@ module.exports = app => {
         app.model.SfActivity.hasMany(app.model.SfComment, { foreignKey: 'activity_id', targetKey: 'id', as: 'commentList' });
     };
 }
-````
+```
 ```javascript
-// model/sf_activity.js
+// model/sf_comment.js
 'use strict';
 module.exports = app => {
     // 定义字段
@@ -84,7 +84,7 @@ module.exports = app => {
         app.model.SfComment.belongsTo(app.model.SfActivity, { foreignKey: 'activity_id', targetKey: 'id', as: 'commentList' });
     };
 }
-````
+```
 `foreignKey`是外键，`targetKey`是外键对应的目标字段 
 
 使用联表查询
