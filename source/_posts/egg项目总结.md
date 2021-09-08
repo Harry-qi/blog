@@ -122,7 +122,7 @@ module.exports = app => {
 3. `attributes`返回接口用这个筛选部分字段，默认不写`attributes`就是查的所有字段
 结果如下
 ![结果](https://i.loli.net/2021/09/02/qGhb7PWxzIv5lme.png)
-# 2. 自动创建数据库字段
+# 3. 自动创建数据库字段
 使用`egg-sequelize-auto`
 代码如下
 ```javascript
@@ -171,3 +171,25 @@ auto.run(function(err) {
 2. 生成代码`sequelize`未定义，如下
 ![问题](https://i.loli.net/2021/09/02/c4gfGKW8zuL1lXp.png)
 需要手动修改为app.Sequelize
+# 4. 格式化时间
+> 默认情况下时间是 2021-09-07T14:15:34.000Z 这种格式，看起来很别扭，一般需要格式化成：2021-09-07 14:15:34
+只需要增加`config/local.js`（以及其他环境中），的`dialectOptions`配置
+```javascript
+exports.sequelize = {
+  dialect: 'xx',
+  username: 'xx',
+  password: 'xxx',
+  host: 'xxxxx',
+  port: 3306,
+  database: 'xxx',
+  timezone: '+08:00',
+  define: {
+    timestamps: false,
+    freezeTableName: true,
+  },
+  dialectOptions: {
+    dateStrings: true,
+    typeCast: true
+  },
+};
+```
