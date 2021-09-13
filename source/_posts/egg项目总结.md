@@ -193,3 +193,20 @@ exports.sequelize = {
   },
 };
 ```
+# 5.查看日志
+定义日志名称以及位置:
+``` javascript
+// config/default.js
+config.logger = {
+  dir: 'logs/egg-for-xx',
+};
+```
+服务器查看日志
+进入日志路径 
+``` shell
+cd /home/xxx/logs/xxx
+# 查看倒数100行
+tail -fn 100 common-error.log
+# 或者
+tail -fn 100 egg-for-xx-web.log 
+```
