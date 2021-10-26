@@ -106,9 +106,11 @@ module.exports = app => {
         model: this.SfComment,
         as: 'commentList',
         attributes: [ 'content', 'create_user_name', 'parent_comment_id' ],
+        // 字段比较多，可以使用exclude排除 { exclude: ['id'] }
         where: {
           is_delete: 0,
         },
+        required: false // 左外连接
       },
       offset: (page - 1) * pageSize,
       limit: pageSize * 1,
