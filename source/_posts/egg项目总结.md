@@ -221,3 +221,50 @@ tail -fn 100 common-error.log
 # 或者
 tail -fn 100 egg-for-xx-web.log 
 ```
+
+# 6. 子查询
+> 场景：我们需要返回一个课程列表，并且每条课程需要展示课时的数量
+> [文档](https://www.sequelize.com.cn/other-topics/sub-queries)
+``` javascript
+ async classList(query) {
+    const { Op, literal } = this.ctx.app.Sequelize;
+    const { offset, limit } = this.ctx.helper.getPage(query);
+    const { title } = query;
+    const search = {};
+    if (title) {
+      search.title = {
+        [Op.like]: `%${title}`,
+      };
+    }
+
+    return await this.Course.findAndCountAll({
+      where: {
+        ...search,
+        is_delete: 0,
+      },
+      attributes: {
+        exclude: [ 'is_delete' ],
+        include: [
+          [ literal('(SELECT COUNT(*) FROM lesson WHERE lesson.lesson_id = Course.id)'), 'lessonNums' ],
+        ], // 这里就是子查询
+      },
+      include: {
+        model: this.ClassIfication,
+        as: 'classification',
+      },
+      offset,
+      limit,
+    });
+  }
+```
+# 多个别名
+> 场景：在查询课程详情的时候需要展示课时列表，这是别名是lessonList
+> 在查询课时的时候需要展示一些课程的信息，这是的别名需要是courseInfo
+其实就是写两个 `associate`
+``` javascript
+Model.associate = function() {
+    // 课程下可能有多个课时
+    app.model.Course.hasMany(app.model.Lesson, { foreignKey: 'lesson_id', targetKey: 'id', as: 'lessonList' });
+    app.model.Course.hasMany(app.model.Lesson, { foreignKey: 'lesson_id', targetKey: 'id', as: 'courseInfo' });
+};
+```
