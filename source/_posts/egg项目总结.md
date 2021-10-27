@@ -85,7 +85,16 @@ module.exports = app => {
     };
 }
 ```
-`foreignKey`是外键，`targetKey`是外键对应的目标字段 
+`foreignKey`是外键
+>A.hasOne(B) 关联意味着 A 和 B 之间存在一对一的关系,外键在目标模型(B)中定义.  
+>
+>
+>A.belongsTo(B)关联意味着 A 和 B 之间存在一对一的关系,外键在源模型中定义(A).
+> 
+>
+>A.hasMany(B) 关联意味着 A 和 B 之间存在一对多关系,外键在目标模型(B)中定义.
+
+
 
 使用联表查询
 ```javascript
