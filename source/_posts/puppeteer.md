@@ -107,3 +107,77 @@ server.listen(8004)
 ## 总结
 这次接触`Puppeteer`,安装使用的时候各种报错，好在`github`都有这种`issue`，能够找到解决方案。这次也是第一次接触`node`，用`node`写接口,遇到跨域问题，返回请求头的问题等等。
 
+---
+### 20210823更新 
+
+>> 最近又有打印需求，然后用express写了下。对比原生的`node`代码会更简洁，
+> 顺便封装了下打印方法
+```javascript
+// main.js
+const puppeteer = require('puppeteer');
+const path = require('path')
+const fs = require('fs'); 
+
+
+const index = {
+  resolvePath (p){
+    return path.join(__dirname,p)
+  },
+  // 删除文件
+  deleteFile(filepath){
+    fs.unlinkSync(filepath);
+  },
+  // 打印
+  async printFn({name,size,url}){
+    const browser = await puppeteer.launch({ headless: true, args:['--no-sandbox']});//打开浏览器
+    const page = await browser.newPage();//打开一个空白页
+  
+    await page.setViewport({width: 1920, height: 720});  // 设置视窗
+    await page.goto(url,{ waitUntil: 'networkidle0' });
+    await page.pdf({
+      path: `./${name}.pdf`,
+      printBackground:true,
+      format: size || 'A4',
+      margin:{
+       left:'5px',
+       right:'5px',
+      }
+    });
+    //关掉浏览器
+    console.log('完成');
+    await browser.close();
+  } 
+}
+module.exports = index
+```
+```javascript
+// utils.js
+const {printFn,resolvePath, deleteFile} = require('./utils.js')
+const express = require('express')
+var cors=require("cors");
+
+const app = express()
+const port = 3000
+// 设置跨域
+app.use(cors())
+
+app.get('/index', async (req, res) => {
+  const { name } = req.query
+  const query =  { name, url: "https://www.baidu.com" }
+  await printFn(query)
+  try {
+    const pdfPath = resolvePath(`../${name}.pdf`)
+    res.download(pdfPath,()=>{
+      // 下载后删除临时文件
+      deleteFile(pdfPath)
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+app.listen(port, () => {
+  console.log(`node app listening at http://localhost:${port}`)
+})
+```
+
