@@ -11,6 +11,10 @@ nvm是用来切换不同的node版本的
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 ```
+或者
+```shell
+npm i nvm
+```
 2. 在.zshrc配置变量
 ```
 vim ~/.zshrc
