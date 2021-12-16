@@ -11,10 +11,9 @@ nvm是用来切换不同的node版本的
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 ```
-或者
-```shell
-npm i nvm
-```
+~~或者~~
+~~npm i nvm~~ ([nvm的npm](https://www.npmjs.com/package/nvm)包已经废除)
+
 2. 在.zshrc配置变量
 ```
 vim ~/.zshrc
@@ -54,4 +53,4 @@ nvm use 14.15.4
 ```shell
 nvm alias default stable 
 ```
-stable是最新稳定版，或者你可以设置具体的版本号，例如 `nvm alias default 16.15.0`
+stable是最新稳定版，或者你可以设置具体的版本号，例如 `nvm alias default 16.13.0`
