@@ -11,6 +11,9 @@ nvm是用来切换不同的node版本的
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 ```
+~~或者~~
+~~npm i nvm~~ ([nvm的npm](https://www.npmjs.com/package/nvm)包已经废除)
+
 2. 在.zshrc配置变量
 ```
 vim ~/.zshrc
@@ -41,3 +44,13 @@ nvm install 13.7.0
 nvm ls
 nvm use 14.15.4
 ```   
+
+## 注意
+在使用过程中，我发现每次打开终端使用的node版本是不一致的。例如我node默认版本是10.15.0，我打开终端然后使用16.13.0，然后打开WebStorm的终端就发现还是10.15.0。 
+
+但是大部分项目我是想使用最新稳定版本的，就需要通过以下方法解决。
+### 解决方法
+```shell
+nvm alias default stable 
+```
+stable是最新稳定版，或者你可以设置具体的版本号，例如 `nvm alias default 16.13.0`
