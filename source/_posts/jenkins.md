@@ -50,5 +50,10 @@ tags: jenkins
 - 点击`控制台输出`，可以看到在自动打包，并且构建完成，没有报错。 
 [![BXWDYR.png](https://s1.ax1x.com/2020/11/11/BXWDYR.png)](https://imgchr.com/i/BXWDYR)
 
+## 2022-01-25更新
+这次是需要指定分支推送才触发自动化部署，具体操作如下
+![q](https://s2.loli.net/2022/01/25/DaRYV8tpT4QxN2z.jpg)
+![q1](https://s2.loli.net/2022/01/25/q53VTItumpnhbOy.jpg)
+其实就是在jenkins中加入过滤分支即可，gitlab是不用操作的
 ## 总结
 第一次接触jenkins，搭配gitlab的webhook实现自动打包，效果还是可以的。
