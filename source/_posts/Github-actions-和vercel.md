@@ -39,5 +39,7 @@ tags:
 用作测试的git仓库地址：https://github.com/Harry-qi/test-github-actions
 
 # 总结
-目前发现 `GitHub actions`适合部署那些定时任务，执行node写的函数，不适合部署接口服务   
+如果是定时任务可以使用github actions自带的schedule执行，不要使用node-schedule  
+一次性的函数执行也可以使用github actions部署  
+
 `vercel`适合部署接口服务，也可以当作部署博客之类的
