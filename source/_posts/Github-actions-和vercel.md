@@ -11,7 +11,8 @@ tags:
 
 最终决定更换node定时发送消息的方案，决定使用`GitHub actions`的定时服务。
 还是发现了问题
-1. `GitHub actions`的时间是`UTC`，北京时间比`UTC`时间快**8个小时**
+1. `GitHub actions`的时间是`GMT`，北京时间比`GMT`时间快**8个小时**
+![3](https://s2.loli.net/2022/02/11/nOgDBMlYQmZcub2.jpg)
 ![2](https://s2.loli.net/2022/02/10/JWQpGFSYNAZel3X.jpg)
 2. `GitHub actions` 也**不是立即执行的**，会延迟执行，目前发现慢了14分钟。我这里只是测试一次发现是这个时间，不一定准确。
 
