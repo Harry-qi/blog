@@ -38,7 +38,12 @@ tags: jenkins
 - 设置gitlab的webhook
  - 进入项目，选择settings，再选择Web hooks(这里根据gitlab版本不同，找到Web hooks的步骤可能不同)
  [![BXWtyT.png](https://s1.ax1x.com/2020/11/11/BXWtyT.png)](https://imgchr.com/i/BXWtyT)
- - `URL` 填写`http://服务器IP:端口号/generic-webhook-trigger/invoke?token=webhook_token` 这里 token填写就是当时我们在jenkins**构建触发器**步骤填写的`Token`，一定要保持一致。
+ - `URL` 填写`http://服务器IP:端口号/generic-webhook-trigger/invoke?token=webhook_token` 这里 token填写就是当时我们在jenkins**构建触发器**步骤填写的`Token`，一定要保持一致。  
+
+
+ > 注意：这里的URL是根据每个版本的jenkins提示的URL填写即可，如下图，提示的URL是没有 `generic-webhook-trigger/invoke?`的
+ > ![1](https://s2.loli.net/2022/01/25/PnaN5MVJZky34tG.jpg)
+
  - `Trigger` 可以根据实际需求勾选,我只是按照默认的勾选`push`。
 - 至此，jenkins和gitlab的设置已经全部设置完成，可以进行git push看看效果了 
 
@@ -50,5 +55,11 @@ tags: jenkins
 - 点击`控制台输出`，可以看到在自动打包，并且构建完成，没有报错。 
 [![BXWDYR.png](https://s1.ax1x.com/2020/11/11/BXWDYR.png)](https://imgchr.com/i/BXWDYR)
 
+## 2022-01-25更新
+这次是需要指定分支推送才触发自动化部署，具体操作如下
+![q](https://s2.loli.net/2022/01/25/DaRYV8tpT4QxN2z.jpg)
+点击构建触发器->在 Build when a change is pushed to GitLab中点击高级
+![q1](https://s2.loli.net/2022/01/25/q53VTItumpnhbOy.jpg)
+其实就是在jenkins中加入过滤分支即可，gitlab是不用设置分支的
 ## 总结
 第一次接触jenkins，搭配gitlab的webhook实现自动打包，效果还是可以的。
