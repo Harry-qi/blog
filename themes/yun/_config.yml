@@ -42,10 +42,10 @@ toc:
 
 # Social Links.
 social:
-  - name: E-Mail
-    link: varcmq@gmail.com
-    icon: icon-mail-line
-    color: "#8E71C1"
+  - name: GitHub
+    link: https://github.com/Harry-qi
+    icon: icon-github-line
+    color: "#181717"
 
 codeblock:
   copy_btn: true

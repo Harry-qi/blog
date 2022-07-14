@@ -118,5 +118,5 @@ prismjs:
 head:
   js:
     base:
-      - /source/js/baidu.js
+      - "./source/js/baidu.js"
     defer: true
