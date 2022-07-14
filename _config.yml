@@ -114,3 +114,9 @@ prismjs:
   preprocess: true
   line_number: false
   tab_replace: ""
+
+head:
+  js:
+    base:
+      - /source/js/baidu.js
+    defer: true
