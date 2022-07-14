@@ -115,6 +115,11 @@ prismjs:
   line_number: false
   tab_replace: ""
 
+head:
+  js:
+    defer:
+      baidu: /js/baidu.js
+
 
 engine_search:
   enable: false    
