@@ -571,7 +571,7 @@ engine_search:
 
 # https://github.com/wzpan/hexo-generator-search
 local_search:
-  enable: false
+  enable: true
   src: /js/search/local-search.js
 
 # https://github.com/oncletom/hexo-algolia
@@ -643,7 +643,7 @@ mourn:
 
 # SEO
 # https://ziyuan.baidu.com/linksubmit/index
-baidu_push: false
+baidu_push: true
 
 # custom (You can use variables.)
 custom:

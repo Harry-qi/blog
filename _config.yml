@@ -120,3 +120,8 @@ head:
     base:
       - "./source/js/baidu.js"
     defer: true
+
+engine_search:
+  enable: false    
+local_search:
+  enable: true  
